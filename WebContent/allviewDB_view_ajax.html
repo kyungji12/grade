@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>	
+		<script>
+			$(document).ready(function(){
+				$.ajax({
+					url:"http://localhost:8090/190709_lec05/allviewDB_ajax.jsp",	//클라이언트가 요청을 보낼 서버의 url 주소
+					type: "GET",			//http 요청 방식 (get, post)
+					dataType: "json"		//서버에서 보내줄 데이터의 타입
+				})
+				
+				//http 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+					.done(function(json){
+					console.log(json);
+					$("<h1>").text(json.title).appendTo("body"); //h1태그 만들고 json.title출력
+					$("<div class=\"content\">").html(json.html).appendTo("body"); //content div만들고 json.html출력
+					$("<div class=\"content\">").html(json.html).appendTo("body"); //content div만들고 json.html출력
+					$("<div class=\"content\">").html(json.html).appendTo("body"); //content div만들고 json.html출력
+					$("<div class=\"content\">").html(json.html).appendTo("body"); //content div만들고 json.html출력
+					for(var i=0; i<json.length; i++){
+					$("<tr>")
+					.append($("<td>").html(json[i].name))
+					.append($("<td>").html(json[i].studentid))
+					.append($("<td>").html(json[i].kor))
+					.append($("<td>").html(json[i].eng))
+					.append($("<td>").html(json[i].mat))
+					.appendTo("table");
+					}
+				})
+				
+				//http 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨
+				.fail(function(xhr, status, errorThrown){
+					console.log(xhr, status, errorThrown);
+					$("#text").html("오류가 발생했습니다.<br>")	//text div에 출력
+					.append("오류명: "+errorThrown+"<br>")
+					.append("상태: "+status);
+				})
+				
+				//http 요청이 성공하거나 실패하거나 상관없이 언제나 always() 메소드가 실행됨
+				.always(function(xhr, status){
+					console.log("always");
+					console.log(xhr, status);
+					$("#text").html("요청이 완료되었습니다!");	//text div에 출력
+				});
+			});
+		</script>
+		<style>
+			table{
+				border-collapse:collapse;
+			}
+			th, td{
+				border:1px solid black;
+				padding:2px 5px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="text"></div>
+		<table>
+			<tr>
+				<th>이름</th>
+				<th>학번</th>
+				<th>국어</th>
+				<th>영어</th>
+				<th>수학</th>
+			</tr>
+		</table>
+	</body>
+</html>

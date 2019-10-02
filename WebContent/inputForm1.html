@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>성적입력 화면</title>
+		<script>
+		function validate(){
+			var re_name = /^[가-힣]{1,10}$/;
+			var name = document.getElementById("name");
+			
+			if (insert.name.value == "") { // 이름칸이 비어있을 때
+		         alert("이름을 입력하세요.");
+		         insert.name.focus();
+		         return false;
+		      }
+			
+			if (!check(re_name, name, "이름은 10자이내의 한글로 입력하세요")) {
+		         return false;
+		      }				
+		}
+		function check(re, what, message) {
+		      if (re.test(what.value)) {
+		         return true;
+		      }
+		      alert(message);
+		      what.value = "";
+		      what.focus();
+		}
+		</script>
+
+	</head>
+	
+	<body>
+	<h1>성적 입력 추가</h1>
+		<FORM METHOD=POST action='insertDB.jsp' onsubmit='return validate();' name=insert>
+		<table border=0 cellspacing=0 cellpadding=5>
+			<tr>
+			<td width=240></td>
+			<td align=right><input type="submit" value="추가"></td>
+			</tr>
+		</table>
+			
+		<table border=1 cellspacing=0 cellpadding=5>
+			<tr>
+			<td bgcolor=#9999ff>이름</td>
+			<td><input type=text id=name name=insertName size=30></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>학번</td>
+			<td align=center>자동부여</td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>국어</td>
+			<td><input type=number name=korean size=35 min="0" max="100"></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>영어</td>
+			<td><input type=number name=english size=35 min="0" max="100"></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>수학</td>
+			<td><input type=number name=mathematic size=35 min="0" max="100"></td>
+		</tr>
+		
+		
+		</table>
+	</FORM>	
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>성적 조회 후 정정/삭제</title>
+		<style>
+		
+		</style>
+	</head>
+	
+	<body>
+	<h1>성적 조회 후 정정/삭제</h1>
+		<FORM METHOD=POST action='showREC.jsp' min="0" max="100">
+		<table border=0 cellspacing=0 cellpadding=5>
+			 <tr>
+             <td>조회할 학번</td>
+             <td><input type=number name=searchID min="209901"></td>
+             <td colspan="1"><input type="submit" value="조회"></td>
+          </tr>       
+       </table>
+   		
+		<table border=1 cellspacing=0 cellpadding=5>
+			<tr>
+			<td bgcolor=#9999ff>이름</td>
+			<td><input type=text name=Name size=35 pattern = /([^가-힣\x20])/i;></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>학번</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>국어</td>
+			<td><input type=number name=korean size=35 min="0" max="100"></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>영어</td>
+			<td><input type=number name=english size=35 min="0" max="100"></td>
+		</tr>
+		<tr>
+			<td bgcolor=#9999ff>수학</td>
+			<td><input type=number name=mathematic size=35 min="0" max="100"></td>
+		</tr>
+		
+		
+		</table>
+	</FORM>
+	</body>
+</html>
